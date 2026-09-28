@@ -3,6 +3,19 @@ const slideIds = new Set(slides.map((slide) => slide.id));
 const videos = [...document.querySelectorAll('video')];
 const fullscreenButton = document.querySelector('#fullscreen-button');
 let currentSlide = 'home';
+const warmedVideos = new WeakSet();
+
+function warmVideoForSlide(id) {
+  const video = id === 'home' || id === 'koan-one' || id === 'film-one'
+    ? videos[0]
+    : id === 'moment-one' || id === 'film-two'
+      ? videos[1]
+      : null;
+  if (!video || warmedVideos.has(video)) return;
+  warmedVideos.add(video);
+  video.preload = 'auto';
+  video.load();
+}
 
 function showSlide(id, { updateHistory = false, moveFocus = false } = {}) {
   if (!slideIds.has(id)) return;
@@ -13,6 +26,7 @@ function showSlide(id, { updateHistory = false, moveFocus = false } = {}) {
     slide.classList.toggle('is-active', active);
   });
   currentSlide = id;
+  warmVideoForSlide(id);
   window.scrollTo(0, 0);
   if (updateHistory) history.pushState({ slide: id }, '', `#${id}`);
   if (moveFocus) {
