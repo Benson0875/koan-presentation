@@ -8,6 +8,8 @@ Open [index.html](index.html) in a browser, or use the GitHub Pages link in this
 
 The two embedded films are *Three Days to Payday* (2:30) and *Some Were Not* (2:34). They are working cuts with English dialogue and subtitles.
 
+The page starts buffering Film 1 on the cover and Film 2 after Film 1. Keep the report page open while presenting so each video has time to load before it is shown.
+
 ## Presenter materials
 
 - [Five-person rehearsal guide](presentation-guide.md): page assignment, brief English cues, and handoff lines.
